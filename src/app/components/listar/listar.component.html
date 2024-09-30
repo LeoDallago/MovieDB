@@ -1,0 +1,15 @@
+<main class="container my-4">
+    <div class="row justfy-content-center g-3 mt-2">
+        <div *ngFor="let filme of filmes" class="col-10 col-md-6 col-lg-4 col-xl-3 mt-4">
+            <div class="card">
+                <div class="card-header bg-transparent text-center">
+                    <img [src]="filme.urlPoster" alt="Poster de {{filme.titulo}}">
+                </div>
+
+                <div class=" card-body">
+                    <label class="fw-semibold">{{filme.titulo}}</label>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
