@@ -1,13 +1,21 @@
-<main class="container my-4">
-    <div class="row justfy-content-center g-3 mt-2">
-        <div *ngFor="let filme of filmes" class="col-10 col-md-6 col-lg-4 col-xl-3 mt-4">
-            <div class="card">
-                <div class="card-header bg-transparent text-center">
-                    <img [src]="filme.urlPoster" alt="Poster de {{filme.titulo}}">
+<main class="container ">
+    <div class="row p-3 p-md-1">
+        <div *ngFor="let filme of filmes" class="card m-2" style="max-width: 420px;">
+            <div class="row g-0">
+                <div class="col-4">
+                    <img [src]="filme.urlPoster" class="img-fluid rounded-4 p-2" alt="...">
                 </div>
-
-                <div class=" card-body">
-                    <label class="fw-semibold">{{filme.titulo}}</label>
+                <div class="col-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{filme.titulo}}</h5>
+                        <p class="card-text">Data de Lancamento <strong>{{filme.dataLancamento}}</strong></p>
+                        <p class="card-text"><small class="text-body-secondary">Nota:</small>
+                            <label class="text-bg-primary fw-semibold p-2 rounded-1 m-2"
+                                [ngClass]="corNota(filme.nota)">
+                                {{filme.nota}}
+                            </label>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
