@@ -14,7 +14,7 @@ import { not } from 'rxjs/internal/util/not';
 })
 export class ListarComponent implements OnInit {
   public filmes: Filme[];
-  private pagina: number;
+  public pagina: number;
 
   constructor(
     private filmeApiService: FilmeService,

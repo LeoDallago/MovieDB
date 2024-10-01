@@ -10,9 +10,12 @@
                         <h5 class="card-title">{{filme.titulo}}</h5>
                         <p class="card-text">Data de Lancamento <strong>{{filme.dataLancamento}}</strong></p>
                         <p class="card-text"><small class="text-body-secondary">Nota:</small>
-                            <label class="text-bg-primary fw-semibold p-2 rounded-1 m-2"
+                            <label *ngIf="filme.nota > 0" class="fw-semibold p-2 rounded-1 m-2"
                                 [ngClass]="corNota(filme.nota)">
                                 {{filme.nota}}
+                            </label>
+                            <label *ngIf="filme.nota == 0" class="text-bg-primary fw-semibold p-2 rounded-1 m-2">
+                                Sem Nota
                             </label>
                         </p>
                     </div>
@@ -21,14 +24,19 @@
         </div>
 
     </div>
-    <div class="row col-md-4 mx-auto ">
-        <div class="col">
-            <button class="btn btn-primary m-2" (click)="paginaAnterior()">
+    <div class="row col-md-5 mx-auto ">
+        <div class="col-5">
+            <button *ngIf="pagina != 1" class="btn btn-primary m-2" (click)="paginaAnterior()">
                 <i class="bi bi-arrow-left"></i>
                 Pagina anterior
             </button>
         </div>
-        <div class="col">
+        <div class="col-2">
+            <label class="text-bg-primary fw-semibold p-2 rounded-1 m-2">
+                {{pagina}}
+            </label>
+        </div>
+        <div class="col-5">
             <button class="btn btn-primary m-2" (click)="proximaPagina()">
                 Proxima pagina
                 <i class="bi bi-arrow-right"></i>
