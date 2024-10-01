@@ -12,6 +12,5 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
   title = 'Gerenciador De Filmes';
 }
