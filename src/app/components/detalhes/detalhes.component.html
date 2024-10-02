@@ -1,0 +1,37 @@
+<section class="container p-3">
+    <div class="card text-bg-dark text-bottom" style="max-width: 100%;">
+        <img [src]="detalhesFilme?.urlBanner" class="card-img" alt="fundo de {{detalhesFilme?.titulo}}">
+        <div class="card-img-overlay">
+            <h5 class="fs-1">{{detalhesFilme?.titulo}}</h5>
+        </div>
+    </div>
+
+    <div class="card mb-3 mt-5" style="max-width: 100%;">
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img [src]="detalhesFilme?.urlPoster" class="img-fluid rounded-start"
+                    alt="poster de {{detalhesFilme?.titulo}}">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <p class="fs-4">{{detalhesFilme?.descricao}}</p>
+                    <hr>
+                    <p class="fw-semibold fs-5">Data de lancamento: {{detalhesFilme?.dataLancamento}}</p>
+                    <p class="fw-semibold fs-5">Duracao: {{detalhesFilme?.duracao}} Minutos</p>
+                    <p *ngIf="detalhesFilme!.nota > 0" class="fs-5">Nota: {{detalhesFilme?.nota}}</p>
+                    <p *ngIf="detalhesFilme!.nota == 0" class="fs-5">Nota: Sem nota</p>
+
+                    <label class="fw-semibold fs-5">Genero: </label>
+                    <div class="d-flex gap-3">
+                        <p *ngFor="let genero of detalhesFilme?.generos">{{genero.name}}</p>
+                    </div>
+                    <label class="fw-semibold fs-5">Elenco: </label>
+                    <div class="d-lg-flex gap-lg-2">
+                        <p *ngFor="let elenco of detalhesFilme?.elenco">{{elenco.name}}
+                            ({{elenco.character}})</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -17,6 +17,12 @@ export class FilmeService {
     return this.http.get<any>(urlCompleto, this.obterHeadersDeAutorizacao());
   }
 
+  public pegarDetalhesDoFilme(id: number) {
+    const urlCompleto = `${this.urlApi}${id}?language=pt-br&append_to_response=credits`
+
+    return this.http.get<any>(urlCompleto, this.obterHeadersDeAutorizacao());
+  }
+
   private obterHeadersDeAutorizacao() {
     return {
       method: 'GET',
