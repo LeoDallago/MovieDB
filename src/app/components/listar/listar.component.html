@@ -1,6 +1,10 @@
 <main class="container ">
     <div class="row p-3 p-md-1">
-        <div *ngFor="let filme of filmes" class="card m-2" style="max-width: 420px;">
+        <div>
+          <app-buscar (pesquisa)="filtrarFilmes($event)"></app-buscar>
+          <button *ngIf="buscaRealizada" (click)="limparResultados()" class="btn btn-primary btn-sm justify-content-end col-md-3 m-2">Pesquisar novamente</button>
+        </div>
+        <div *ngFor="let filme of filmes" class="card m-lg-2 m-sm-auto" style="max-width: 420px;">
             <a class="stretched-link z-0" [routerLink]="['/detalhes',filme.id]"></a>
             <div class="row g-0">
                 <div class="col-4">
@@ -25,7 +29,7 @@
         </div>
 
     </div>
-    <div class="row col-md-5 mx-auto ">
+    <div *ngIf="!buscaRealizada" class="row col-md-5 mx-auto ">
         <div class="col-5">
             <button *ngIf="pagina != 1" class="btn btn-primary m-2" (click)="paginaAnterior()">
                 <i class="bi bi-arrow-left"></i>

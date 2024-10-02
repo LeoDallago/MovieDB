@@ -4,17 +4,19 @@ import { FilmeService } from '../../service/filme.service';
 import { NgClass, NgForOf, NgIf, ViewportScroller } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { not } from 'rxjs/internal/util/not';
+import { BuscarComponent } from "../buscar/buscar.component";
 
 @Component({
   selector: 'app-listar',
   standalone: true,
-  imports: [NgForOf, NgIf, NgClass, RouterLink],
+  imports: [NgForOf, NgIf, NgClass, RouterLink, BuscarComponent],
   templateUrl: './listar.component.html',
   styleUrl: './listar.component.scss'
 })
 export class ListarComponent implements OnInit {
   public filmes: Filme[];
   public pagina: number;
+  public buscaRealizada: boolean;
 
   constructor(
     private filmeApiService: FilmeService,
@@ -22,6 +24,7 @@ export class ListarComponent implements OnInit {
   ) {
     this.filmes = [];
     this.pagina = 1;
+    this.buscaRealizada = false;
   }
 
 
@@ -60,6 +63,20 @@ export class ListarComponent implements OnInit {
   public proximaPagina() {
     this.pagina += 1
     this.viewportScroller.scrollToPosition([0, 0]);
+    this.obterFilmes();
+  }
+
+  public filtrarFilmes(textoFiltro:string): void {
+    this.buscaRealizada = true;
+    this.filmes = this.filmes.filter(filme => {
+      return filme.titulo.toLowerCase().includes(textoFiltro);
+    })
+  }
+
+  public limparResultados(){
+    this.buscaRealizada = false;
+
+    this.filmes = [];
     this.obterFilmes();
   }
 
