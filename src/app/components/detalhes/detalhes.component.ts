@@ -3,8 +3,6 @@ import { DetalhesFilme } from '../../models/detalhes-filme';
 import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../../service/filme.service';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
-import { mepearGeneroFilme } from '../../utils/mapearGeneroFilme';
-import { mapearElencoFilme } from '../../utils/mapearElencoFilme';
 
 @Component({
   selector: 'app-detalhes',

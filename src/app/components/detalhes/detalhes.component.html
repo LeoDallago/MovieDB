@@ -27,7 +27,7 @@
                     </div>
                     <label class="fw-semibold fs-5">Elenco: </label>
                     <div class="d-lg-flex gap-lg-2">
-                        <p *ngFor="let elenco of detalhesFilme?.elenco">{{elenco.name}}
+                        <p *ngFor="let elenco of detalhesFilme?.elenco"><strong>{{elenco.name}}</strong>
                             ({{elenco.character}})</p>
                     </div>
                 </div>
