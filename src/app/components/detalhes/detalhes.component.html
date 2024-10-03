@@ -1,5 +1,5 @@
 <section class="container p-3">
-    <div class="card text-bg-dark text-bottom" style="max-width: 100%;">
+<!-- LAYOUT ANTIGO    <div class="card text-bg-dark text-bottom" style="max-width: 100%;">
         <img [src]="detalhesFilme?.urlBanner" class="card-img" alt="fundo de {{detalhesFilme?.titulo}}">
         <div class="card-img-overlay">
             <h5 class="fs-1">{{detalhesFilme?.titulo}}</h5>
@@ -12,7 +12,7 @@
                 <img [src]="detalhesFilme?.urlPoster" class="img-fluid rounded-start"
                     alt="poster de {{detalhesFilme?.titulo}}">
             </div>
-            <div class="col-md-8">
+          <div class="col-md-8">
                 <div class="card-body">
                     <p class="fs-4">{{detalhesFilme?.descricao}}</p>
                     <hr>
@@ -33,5 +33,34 @@
                 </div>
             </div>
         </div>
+    </div>-->
+
+  <div class="card mb-3">
+    <img [src]="detalhesFilme?.urlBanner" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="fs-2 fw-normal">{{ detalhesFilme?.titulo }}</h5>
+      <p class="fs-5">{{detalhesFilme?.descricao}}</p>
+      <hr>
+      <p class=" fs-5">Data de lancamento: {{detalhesFilme?.dataLancamento}}</p>
+      <p class="fs-5">Duração: {{detalhesFilme?.duracao}} Minutos</p>
+      <p *ngIf="detalhesFilme!.nota > 0" class="fs-5 ">Nota:
+        <label *ngIf="detalhesFilme!.nota > 0" class="fw-normal p-2 rounded-1 m-2" [ngClass]="corNota(detalhesFilme!.nota)">
+        {{detalhesFilme!.nota}}
+      </label>
+        <label *ngIf="detalhesFilme!.nota == 0" class="text-bg-primary  p-2 rounded-1 m-2">
+          Sem Nota
+        </label></p>
+
+      <label class=" fs-5">Genero: </label>
+      <div class="d-flex gap-3">
+        <p *ngFor="let genero of detalhesFilme?.generos" class="text-bg-secondary p-2 rounded-2">{{genero.name}}</p>
+      </div>
+      <label class=" fs-5">Elenco: </label>
+      <div class="d-lg-flex gap-lg-2">
+        <p *ngFor="let elenco of detalhesFilme?.elenco"><strong>{{elenco.name}}</strong>
+          ({{elenco.character}})</p>
+      </div>
     </div>
+  </div>
+
 </section>

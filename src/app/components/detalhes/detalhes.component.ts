@@ -47,7 +47,7 @@ export class DetalhesComponent implements OnInit {
       urlBanner: 'https://image.tmdb.org/t/p/original/' + obj.backdrop_path,
     }
   }
-  public corNota(nota: number) {
+  public corNota(nota: any) {
     if (nota < 50) {
       return 'text-bg-danger'
     } else if (nota > 51 && nota < 75) {
