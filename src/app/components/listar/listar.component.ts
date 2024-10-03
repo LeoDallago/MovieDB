@@ -1,36 +1,43 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Filme } from '../../models/filme';
 import { FilmeService } from '../../service/filme.service';
 import { NgClass, NgForOf, NgIf, ViewportScroller } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { not } from 'rxjs/internal/util/not';
 import { BuscarComponent } from "../buscar/buscar.component";
+import { FavoritosComponent } from "./favoritos/favoritos.component";
+import { FilmeFavorito } from "../../models/filme-favorito";
+import { LocalStorageService } from "../../service/local-storage-service";
 
 @Component({
   selector: 'app-listar',
   standalone: true,
-  imports: [NgForOf, NgIf, NgClass, RouterLink, BuscarComponent],
+  imports: [NgForOf, NgIf, NgClass, RouterLink, BuscarComponent, FavoritosComponent],
   templateUrl: './listar.component.html',
   styleUrl: './listar.component.scss'
 })
 export class ListarComponent implements OnInit {
   public filmes: Filme[];
+  public filmesFavoritos: FilmeFavorito[];
   public pagina: number;
   public buscaRealizada: boolean;
 
+
   constructor(
     private filmeApiService: FilmeService,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private localStorageService: LocalStorageService
   ) {
     this.filmes = [];
+    this.filmesFavoritos = [];
     this.pagina = 1;
     this.buscaRealizada = false;
-  }
 
+  }
 
   ngOnInit(): void {
     this.viewportScroller.scrollToPosition([0, 0]);
     this.obterFilmes();
+    this.filmesFavoritos = this.localStorageService.obterFavoritos()
   }
 
   private obterFilmes() {
@@ -80,6 +87,7 @@ export class ListarComponent implements OnInit {
     this.obterFilmes();
   }
 
+
   public corNota(nota: number) {
     if (nota < 50) {
       return 'text-bg-danger'
@@ -89,4 +97,6 @@ export class ListarComponent implements OnInit {
       return 'text-bg-success'
     }
   }
+
+
 }

@@ -3,6 +3,8 @@ import { DetalhesFilme } from '../../models/detalhes-filme';
 import { ActivatedRoute } from '@angular/router';
 import { FilmeService } from '../../service/filme.service';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
+import { LocalStorageService } from "../../service/local-storage-service";
+import { FilmeFavorito } from "../../models/filme-favorito";
 
 @Component({
   selector: 'app-detalhes',
@@ -17,7 +19,8 @@ export class DetalhesComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private filmeApiService: FilmeService
+    private filmeApiService: FilmeService,
+    private localStorageService: LocalStorageService,
   ) { }
 
   ngOnInit(): void {
@@ -45,8 +48,30 @@ export class DetalhesComponent implements OnInit {
       dataLancamento: obj.release_date,
       urlPoster: 'https://image.tmdb.org/t/p/original/' + obj.poster_path,
       urlBanner: 'https://image.tmdb.org/t/p/original/' + obj.backdrop_path,
+      favorito: this.localStorageService.favoritoJaExiste(obj.id),
     }
   }
+
+  public alterarStatusFavorito(id: number) {
+    if (!this.detalhesFilme) return;
+
+    if (this.localStorageService.favoritoJaExiste(id)) {
+      this.detalhesFilme.favorito = false;
+
+      this.localStorageService.removerFavorito(id);
+    } else {
+      this.detalhesFilme.favorito = true;
+
+      const novoFavorito: FilmeFavorito = {
+        id: id,
+        titulo: this.detalhesFilme.titulo,
+        urlImagem: this.detalhesFilme.urlPoster,
+      };
+
+      this.localStorageService.salvarFavorito(novoFavorito);
+    }
+  }
+
   public corNota(nota: any) {
     if (nota < 50) {
       return 'text-bg-danger'

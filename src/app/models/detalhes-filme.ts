@@ -9,4 +9,5 @@ export interface DetalhesFilme {
     dataLancamento: string,
     urlPoster: string,
     urlBanner: string,
+    favorito: boolean
 }

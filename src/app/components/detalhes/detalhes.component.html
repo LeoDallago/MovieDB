@@ -60,6 +60,26 @@
         <p *ngFor="let elenco of detalhesFilme?.elenco"><strong>{{elenco.name}}</strong>
           ({{elenco.character}})</p>
       </div>
+
+      <div class="text-end">
+        <button
+          *ngIf="!detalhesFilme?.favorito"
+          (click)="alterarStatusFavorito(detalhesFilme!.id)"
+          title="Favoritar"
+          class="btn btn-outline-light py-1"
+        >
+          <i class="bi bi-heart fs-5 m-auto"></i>
+        </button>
+        <button
+          *ngIf="detalhesFilme?.favorito"
+          (click)="alterarStatusFavorito(detalhesFilme!.id)"
+          title="Remover favorito"
+          class="btn btn-outline-light py-1"
+        >
+          <i class="bi bi-heart-fill fs-5 m-auto"></i>
+        </button>
+      </div>
+
     </div>
   </div>
 

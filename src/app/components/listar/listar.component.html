@@ -1,34 +1,37 @@
-<main class="container ">
+<main class="container">
     <div class="row p-3 p-md-1">
         <div>
           <app-buscar (pesquisa)="filtrarFilmes($event)"></app-buscar>
           <button *ngIf="buscaRealizada" (click)="limparResultados()" class="btn btn-primary btn-sm justify-content-end col-md-3 m-2">Pesquisar novamente</button>
         </div>
+      <app-favoritos *ngIf="!buscaRealizada" [filmesFavoritos]="filmesFavoritos"></app-favoritos>
+
         <div *ngFor="let filme of filmes" class="card m-lg-2 m-sm-auto" style="max-width: 420px;">
-            <a class="stretched-link z-0" [routerLink]="['/detalhes',filme.id]"></a>
-            <div class="row g-0">
-                <div class="col-4">
-                    <img [src]="filme.urlPoster" class="img-fluid rounded-4 p-2" alt="...">
-                </div>
-                <div class="col-8">
-                    <div class="card-body">
-                        <h5 class="fw-normal">{{filme.titulo}}</h5>
-                        <p class="fw-light">Data de Lancamento <strong>{{filme.dataLancamento}}</strong></p>
-                        <p class="fw-light"><small class="text-body-secondary">Nota:</small>
-                            <label *ngIf="filme.nota > 0" class="fw-normal p-2 rounded-1 m-2"
-                                [ngClass]="corNota(filme.nota)">
-                                {{filme.nota}}
-                            </label>
-                            <label *ngIf="filme.nota == 0" class="text-bg-primary fw-normal p-2 rounded-1 m-2">
-                                Sem Nota
-                            </label>
-                        </p>
-                    </div>
-                </div>
+          <a class="stretched-link z-0" [routerLink]="['/detalhes',filme.id]"></a>
+          <div class="row g-0">
+            <div class="col-4">
+              <img [src]="filme.urlPoster" class="img-fluid rounded-4 p-2" alt="...">
             </div>
+            <div class="col-8">
+              <div class="card-body">
+                <h5 class="fw-normal">{{ filme.titulo }}</h5>
+                <p class="fw-light">Data de Lancamento <strong>{{ filme.dataLancamento }}</strong></p>
+                <p class="fw-light">Nota:
+                  <label *ngIf="filme.nota > 0" class="fw-normal p-2 rounded-1 m-2"
+                         [ngClass]="corNota(filme.nota)">
+                    {{ filme.nota }}
+                  </label>
+                  <label *ngIf="filme.nota == 0" class="text-bg-primary fw-normal p-2 rounded-1 m-2">
+                    Sem Nota
+                  </label>
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
-    </div>
+      </div>
+
     <div *ngIf="!buscaRealizada" class="row col-md-5 mx-auto ">
         <div class="col-5">
             <button *ngIf="pagina != 1" class="btn btn-primary m-2" (click)="paginaAnterior()">
