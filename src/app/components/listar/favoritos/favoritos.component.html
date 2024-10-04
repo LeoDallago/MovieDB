@@ -1,6 +1,6 @@
 
 <section class="row justify-content-start g-3 mt-1">
-  <h4 *ngIf="filmesFavoritos.length > 0" class="fw-light">Favoritos</h4>
+  <h4 class="fw-light">Favoritos</h4>
   <div *ngFor="let filme of filmesFavoritos" class="col-4 col-md-3 col-lg-1">
     <div class="card rounded-3 h-100">
       <a class="stretched-link" [routerLink]="['/detalhes', filme.id]"></a>

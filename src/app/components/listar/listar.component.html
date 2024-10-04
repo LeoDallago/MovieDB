@@ -4,7 +4,7 @@
           <app-buscar (pesquisa)="filtrarFilmes($event)"></app-buscar>
           <button *ngIf="buscaRealizada" (click)="limparResultados()" class="btn btn-primary btn-sm justify-content-end col-md-3 m-2">Pesquisar novamente</button>
         </div>
-      <app-favoritos *ngIf="!buscaRealizada" [filmesFavoritos]="filmesFavoritos"></app-favoritos>
+      <app-favoritos *ngIf="!buscaRealizada && filmesFavoritos.length > 0" [filmesFavoritos]="filmesFavoritos"></app-favoritos>
 
         <div *ngFor="let filme of filmes" class="card m-lg-2 m-sm-auto" style="max-width: 420px;">
           <a class="stretched-link z-0" [routerLink]="['/detalhes',filme.id]"></a>
