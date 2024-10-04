@@ -5,6 +5,7 @@ import { FilmeService } from '../../service/filme.service';
 import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { LocalStorageService } from "../../service/local-storage-service";
 import { FilmeFavorito } from "../../models/filme-favorito";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: 'app-detalhes',
@@ -21,6 +22,7 @@ export class DetalhesComponent implements OnInit {
     private route: ActivatedRoute,
     private filmeApiService: FilmeService,
     private localStorageService: LocalStorageService,
+    private toastrService: ToastrService,
   ) { }
 
   ngOnInit(): void {
@@ -58,6 +60,7 @@ export class DetalhesComponent implements OnInit {
     if (this.localStorageService.favoritoJaExiste(id)) {
       this.detalhesFilme.favorito = false;
 
+      this.toastrService.warning("Favorito removido com sucesso!")
       this.localStorageService.removerFavorito(id);
     } else {
       this.detalhesFilme.favorito = true;
@@ -67,7 +70,7 @@ export class DetalhesComponent implements OnInit {
         titulo: this.detalhesFilme.titulo,
         urlImagem: this.detalhesFilme.urlPoster,
       };
-
+      this.toastrService.success("Favorito adicionado com sucesso!")
       this.localStorageService.salvarFavorito(novoFavorito);
     }
   }
@@ -81,5 +84,7 @@ export class DetalhesComponent implements OnInit {
       return 'text-bg-success'
     }
   }
+
+  protected readonly window = window;
 }
 

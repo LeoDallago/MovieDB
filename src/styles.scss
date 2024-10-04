@@ -1,9 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'bootstrap';
+@import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons';
 
-$cool-gray: #8b94a3ff;
-$aquamarine: #8cfbdeff;
-$spring-green: #0fff95ff;
-$emerald: #06ba63ff;
-$pakistan-green: #103900ff;
+@import 'ngx-toastr/toastr-bs5-alert';

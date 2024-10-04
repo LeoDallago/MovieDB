@@ -36,7 +36,8 @@
     </div>-->
 
   <div class="card mb-3">
-    <img [src]="detalhesFilme?.urlBanner" class="card-img-top" alt="...">
+    <img *ngIf="window.outerWidth <= 768" [src]="detalhesFilme?.urlPoster" class="card-img-top" alt="...">
+    <img *ngIf="window.outerWidth > 768" [src]="detalhesFilme?.urlBanner" class="card-img-top" alt="...">
     <div class="card-body">
       <h5 class="fs-2 fw-normal">{{ detalhesFilme?.titulo }}</h5>
       <p class="fs-5">{{detalhesFilme?.descricao}}</p>

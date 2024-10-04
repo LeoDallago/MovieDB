@@ -123,6 +123,13 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "https://leodallago.github.io/MovieDB/",
+            "repo": "https://github.com/LeoDallago/Gerenciador-De-Filmes.git"
+          }
         }
       }
     }
